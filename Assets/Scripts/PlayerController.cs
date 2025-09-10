@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +11,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 posicion;
     public float speed;
     private Rigidbody rb;
+    private int contador;
+    public TextMeshProUGUI textoContador;
+    private AudioSource audioRecoleccion;
 
     void Start()
     {
+        audioRecoleccion = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         systemParticulas = particulas.GetComponent<ParticleSystem>();
         systemParticulas.Stop();
@@ -42,12 +48,25 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Recolectable"))
         {
+            audioRecoleccion.Play();
+            contador += 1;
+            posicion = other.gameObject.transform.position;
+            particulas.position = posicion;
+            systemParticulas = particulas.GetComponent<ParticleSystem>();
+
+            systemParticulas.Play();
             other.gameObject.SetActive(false);
-            // systemParticulas.Play();
+            textoContador.text = "Objetos recolectados: " + contador.ToString();
+            if (contador == 12)
+            {
+                Debug.Log(contador);
+                SceneManager.LoadScene(1);
+            }
         }
         else
         {
 
         }
+        
     }
 }
