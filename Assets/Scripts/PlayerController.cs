@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         systemParticulas = particulas.GetComponent<ParticleSystem>();
         systemParticulas.Stop();
+        textoContador.text = "Objetos recolectados: " + contador.ToString();
     }
 
     // Update is called once per frame
