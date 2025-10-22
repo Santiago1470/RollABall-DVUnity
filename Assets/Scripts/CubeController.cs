@@ -37,17 +37,17 @@ public class CubeController : MonoBehaviour
 
     public void MoverCuboX(float value)
     {
-        transform.localPosition = new Vector3(value, 1, 0);
+        transform.localPosition = new Vector3(value, transform.localPosition.y, transform.localPosition.z);
     }
 
     public void MoverCuboY(float value)
     {
-        transform.localPosition = new Vector3(0, value, 0);
+        transform.localPosition = new Vector3(transform.localPosition.x, value, transform.localPosition.z);
     }
 
     public void MoverCuboZ(float value)
     {
-        transform.localPosition = new Vector3(0, 1, value);
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, value);
     }
 
     public void Reset()

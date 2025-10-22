@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
             systemParticulas = particulas.GetComponent<ParticleSystem>();
 
             systemParticulas.Play();
+
+            StartCoroutine(DetenerParticulas(systemParticulas));
+
             other.gameObject.SetActive(false);
             textoContador.text = "Objetos recolectados: " + contador.ToString();
             if (contador == 12)
@@ -68,6 +71,13 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-        
+
+    }
+    
+    public IEnumerator DetenerParticulas(ParticleSystem part)
+    {
+        yield return new WaitForSecondsRealtime(5);
+
+        part.Stop();
     }
 }
