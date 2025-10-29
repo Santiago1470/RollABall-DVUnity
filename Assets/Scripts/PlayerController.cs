@@ -14,9 +14,11 @@ public class PlayerController : MonoBehaviour
     private int contador;
     public TextMeshProUGUI textoContador;
     private AudioSource audioRecoleccion;
+    Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         audioRecoleccion = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         systemParticulas = particulas.GetComponent<ParticleSystem>();
@@ -27,7 +29,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // Animar();
+        }
     }
 
     void FixedUpdate()
@@ -73,11 +78,23 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    
+
     public IEnumerator DetenerParticulas(ParticleSystem part)
     {
         yield return new WaitForSecondsRealtime(5);
 
         part.Stop();
+    }
+
+    public void Animar()
+    {
+        anim.SetBool("Animar", true);
+        StartCoroutine(Reiniciar());
+    }
+    
+    public IEnumerator Reiniciar()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        anim.SetBool("Animar", false);
     }
 }
