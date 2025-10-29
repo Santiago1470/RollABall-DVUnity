@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 111435620136904097}
   - component: {fileID: 111435620136904096}
   - component: {fileID: 111435620136904101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObjetoRecolectable
   m_TagString: Recolectable
   m_Icon: {fileID: 0}

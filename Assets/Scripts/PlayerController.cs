@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem systemParticulas;
     private Vector3 posicion;
     public float speed;
+    public GameObject poder;
     private Rigidbody rb;
     private int contador;
     public TextMeshProUGUI textoContador;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            // Animar();
+            Animar();
         }
     }
 
@@ -88,13 +89,16 @@ public class PlayerController : MonoBehaviour
 
     public void Animar()
     {
-        anim.SetBool("Animar", true);
+        // anim.SetBool("animar", true);
         StartCoroutine(Reiniciar());
     }
     
     public IEnumerator Reiniciar()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
-        anim.SetBool("Animar", false);
+        anim.SetBool("animar", true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        poder.transform.position = transform.position;
+        poder.SendMessage("Shoot");
+        anim.SetBool("animar", false);
     }
 }
